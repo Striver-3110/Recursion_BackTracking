@@ -46,7 +46,6 @@ bool printF(int arr[],vector<int> ss, int ind,int n,int sum,bool& flg){
     // or we can say that ind == n
     if(ind == n){
         if(sum == 0){
-            
             for(auto& it: ss){
                 cout<<it<<" ";
             }
@@ -54,12 +53,20 @@ bool printF(int arr[],vector<int> ss, int ind,int n,int sum,bool& flg){
                 cout<<"{}";
             }
             cout<<endl;
+            // as condition satisfied
+            // we will return true
+            // so that the callee can return from then and there
             return true;
         }
+        // condition did not satisfy
+        // we will return false
+        // so that callee can proceed further
         return false;
     }
     ss.push_back(arr[ind]);
     sum = sum-arr[ind];
+    // if by including we can get sum = k
+    // return true
     if(printF(arr,ss,ind+1,n,sum,flg)){
         return true;
         
@@ -67,9 +74,14 @@ bool printF(int arr[],vector<int> ss, int ind,int n,int sum,bool& flg){
 
     ss.pop_back();
     sum = sum+arr[ind];
+    // if by excluding we can get sum = k
+    // return true
     if(printF(arr,ss,ind+1,n,sum,flg)){
         return true;
     }
+    // if no such sub sequence found
+    // return false
+    return false;
 }
 
 int main()
@@ -88,11 +100,13 @@ int main()
     {
         int arr[] = {1,1,2};
         int n = 3;
-        // vector<int> subSeq;
-        
-        // cout<<t<<" ";
+
+
         bool flg = false;
-        flg = printF(arr,{},0,3,2,flg);
+
+        if(!printF(arr,{},0,3,2,flg)){
+            cout<<"No such sub sequence found!";
+        }
 
     }
 
