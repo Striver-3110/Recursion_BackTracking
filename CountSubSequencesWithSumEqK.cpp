@@ -44,6 +44,9 @@ using namespace std;
 int printF(int arr[],vector<int> ss, int ind,int n,int sum,bool& flg){
     // only check the sum when the recursion is at its most possible depth
     // or we can say that ind == n
+    if(sum < 0){
+        return 0;
+    }
     if(ind == n){
         if(sum == 0){
             // for(auto& it: ss){
