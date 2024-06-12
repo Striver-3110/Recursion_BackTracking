@@ -5,6 +5,11 @@ using namespace std;
 class Solution {
 public:
 
+    // TC: --> O(2^n * k)
+    //? k here stand for pushing temp into ans
+    //? as copying one data structure into another dosent take constant time
+
+    // SC: --> O([let c combination] * [each of average size s])
     void solve(vector<int>& candidates,int n, int ind, int target,vector<vector<int>> & ans,vector<int> temp){
         if(ind == n){
             if(target == 0){
