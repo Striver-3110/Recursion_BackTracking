@@ -3,20 +3,32 @@ using namespace std;
 
 class Solution {
 public:
+    // void solve(vector<int>& nums, int ind, int& n, vector<int>& temp, vector<vector<int>>& ans){
+    //   
+    //     ans.push_back(temp);// takes O(k) where k is size of temp
+
+    //     for(int i = ind; i < n; i++){
+    //         if(i > ind && nums[i] == nums[i-1])continue;
+
+    //         temp.push_back(nums[i]);
+    //         solve(nums,i+1,n,temp,ans);
+    //         temp.pop_back();
+    //     }
+    //     return;
+    // }
     void solve(vector<int>& nums, int ind, int& n, vector<int>& temp, vector<vector<int>>& ans){
         if(ind == n){
             ans.push_back(temp);// takes O(k) where k is size of temp
             return;
         }
-        // for(int i = ind; i < n; i++){
-        //     if(i > ind && nums[i] == nums[i-1])continue;
+
         temp.push_back(nums[ind]);
         solve(nums,ind+1,n,temp,ans);
         temp.pop_back();
-        // }
+
         while(ind+1 < nums.size() && nums[ind] == nums[ind+1])ind++;
         solve(nums,ind+1,n,temp,ans);
-        // return ;
+        return ;
     }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         sort(nums.begin(),nums.end());
